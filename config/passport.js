@@ -15,7 +15,22 @@ module.exports = ((passport)=>{
     },
     async(accessToken , refreshToken , profile , cb)=>{
         console.log(profile)
-      return  cb(profile)
+        const newUser = {
+            googleId:profile.id,
+            displayName:profile.displayName,
+            firstName:profile.name.givenName,
+            lastName:profile.name.familyName,
+            image:profile.photos[0].value
+        }
+        try{
+            let user = await User.findOne({googleId:profile.id})
+            if(user){
+                cb(null,user)
+            }
+        }
+        catch(err){
+
+        }
     }
     ))
 
