@@ -1,3 +1,28 @@
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2723593151252334',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v8.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
 <h3><i class="fas fa-book-reader"></i> StoryBooks</h3>
 <div class="section">
     <p class="lead">Create public and private stories from your life</p>
@@ -6,5 +31,11 @@
 <div class="section">
     <a href="/auth/google" class="btn red darken-1">
         <i class="fab fa-google left"></i> Log In With Google
+    </a>
+</div>
+
+<div class="section">
+    <a href="/auth/facebook" class="btn blue darken-1">
+        <i class="fab fa-facebook right"></i> Log In With facebook
     </a>
 </div>

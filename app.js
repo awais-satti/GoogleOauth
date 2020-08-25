@@ -7,7 +7,9 @@ const app = express();
 const path = require('path')
 const passport = require('passport')
 const sessions = require('express-session')
+const cors  = require('cors');
 
+app.use(cors());
 
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
@@ -15,8 +17,9 @@ if(process.env.NODE_ENV === 'development'){
 // Load congig
 dotenv.config({path:'./config/config.env'})
 //passport config
-require('./config/passport')(passport)
-
+const passportConfig= require('./config/passport');
+passportConfig.google(passport);
+passportConfig.facebook(passport);
 
 connectdb();
 
