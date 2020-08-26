@@ -1,5 +1,6 @@
-const GoogleStrategy = require('passport-google-oauth20').Strategy
-const FacebookStrategy = require('passport-facebook')
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook');
+const paypalStrategy = require('passport-paypal').Strategy;
 const mongoose = require('mongoose');
 const User = require('../models/User');
 const passport = require('passport');
@@ -56,12 +57,14 @@ module.exports = {
         passport.use(new FacebookStrategy({
             clientID:process.env.FACEBOOK_CLIENT_ID,
             clientSecret:process.env.FACEBOOK_CLIENT_SECRET,
-            callbackURL:'/auth/facebook/callback'
+            callbackURL:'http://localhost:3000/auth/facebook/callback'
         
             
         },
         (accessToken,refreshToken,profile,cb)=>{
             console.log(profile)
+            console.log("ACCESS_TOKEN :" +accessToken)
+            console.log("REFRESJ_TOKEN :" +refreshToken)
             return cb(null,profile)
         }
         
@@ -76,4 +79,6 @@ module.exports = {
             })
         })
     })
+
+
 } 

@@ -18,8 +18,10 @@ if(process.env.NODE_ENV === 'development'){
 dotenv.config({path:'./config/config.env'})
 //passport config
 const passportConfig= require('./config/passport');
+const { Passport } = require('passport')
 passportConfig.google(passport);
 passportConfig.facebook(passport);
+
 
 connectdb();
 
@@ -39,6 +41,7 @@ app.set('view engine', '.hbs');
 
 app.use('/auth',require('./routes/auth'))
 app.use('/',require('./routes/index'))
+app.use('/payment',require('./config/paypal'))
 
 
 
